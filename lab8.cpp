@@ -31,8 +31,19 @@ int main() {
         hpdata[i].setData(i);
     }
     // TODO create initial heap named myHeap with data
-    // from hpdata, and a second heap named myHeap2 with
+    // from hpdata, 
+    HeapData myHeap[10];
+    for (int i = 0; i < 10; i++){
+        myHeap[i].priority = hpdata[i].priority;
+        myHeap[i].theData = hpdata[i].theData;
+    }
+    myHeap.make_heap();
+
+    
+    // and a second heap named myHeap2 with
     // the same data but where it is a min heap
+    
+
 
     // TODO show the heap data in myHeap and myHeap2
 
