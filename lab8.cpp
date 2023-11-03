@@ -8,6 +8,7 @@
 #include <iostream>
 #include <algorithm>
 #include <stdlib.h>
+#include <vector>
 using namespace std;
 
 class HeapData {
@@ -18,6 +19,16 @@ public:
     void setData(int d){ theData = d; }
     int getPriority(){ return priority; }
 };
+
+void showHeap(int curr, int level) {
+        if (curr < data.size()) {
+            showHeap(curr*2+2,level+1);
+            cout << setw(level*3) << " ";
+            cout << data[curr].getPriority() << "(" << 
+                   data[curr].getTheData() << ")" << "\n";
+            showHeap(curr*2+1,level+1);
+        }
+    }
 
 int RandInRange(int low, int high) {
     return (low + rand()%(high - low + 1));
@@ -32,20 +43,23 @@ int main() {
     }
     // TODO create initial heap named myHeap with data
     // from hpdata, 
-    HeapData myHeap[10];
+    vector<HeapData> myHeap;
     for (int i = 0; i < 10; i++){
-        myHeap[i].priority = hpdata[i].priority;
-        myHeap[i].theData = hpdata[i].theData;
+        myHeap.push_back(hpdata[i]);
     }
-    myHeap.make_heap();
+    make_heap(myHeap.begin(), myHeap.end());
 
-    
     // and a second heap named myHeap2 with
     // the same data but where it is a min heap
-    
-
+    vector<HeapData> myHeap2;
+    for (int i = 0; i < 10; i++){
+        myHeap.push_back(hpdata[i]);
+    }
+    make_heap(myHeap.rbegin(), myHeap.rend());
 
     // TODO show the heap data in myHeap and myHeap2
+    
+
 
     const int TESTSIZE = 1000;
     HeapData sdata[TESTSIZE];
@@ -74,6 +88,7 @@ int main() {
         // then pop heap2
 
     }
+
     sort(sdata,sdata + TESTSIZE);
     for (int i = 0; i < TESTSIZE; i++) {
         if (sdata[i].getPriority() != hdata1[i].getPriority()) {
