@@ -15,20 +15,17 @@ class HeapData {
 public:
     int priority;
     int theData;
-    void setPriority(int p){ priority = p; }
-    void setData(int d){ theData = d; }
-    int getPriority(){ return priority; }
 };
 
-void showHeap(int curr, int level) {
-        if (curr < data.size()) {
-            showHeap(curr*2+2,level+1);
-            cout << setw(level*3) << " ";
-            cout << data[curr].getPriority() << "(" << 
-                   data[curr].getTheData() << ")" << "\n";
-            showHeap(curr*2+1,level+1);
-        }
+void showHeap(vector<HeapData> data, int curr = 0, int level = 0) {
+    if (curr < data.size()) {
+        showHeap(data, curr*2+2,level+1);
+        //cout << setw(level*3) << " ";
+        cout << data[curr].priority << "(" << 
+                data[curr].theData << ")" << "\n";
+        showHeap(data, curr*2+1,level+1);
     }
+}
 
 int RandInRange(int low, int high) {
     return (low + rand()%(high - low + 1));
@@ -38,8 +35,8 @@ int main() {
     int pdata[] = {30, 50, 70, 20, 80, 90, 200, 15, 25, 30};
     HeapData hpdata[10];
     for (int i = 0; i < 10; i++) {
-        hpdata[i].setPriority(pdata[i]);
-        hpdata[i].setData(i);
+        hpdata[i].priority = pdata[i];
+        hpdata[i].theData= i;
     }
     // TODO create initial heap named myHeap with data
     // from hpdata, 
@@ -58,9 +55,10 @@ int main() {
     make_heap(myHeap.rbegin(), myHeap.rend());
 
     // TODO show the heap data in myHeap and myHeap2
-    
+    showHeap(myHeap);
+    showHeap(myHeap2);
 
-
+    /*
     const int TESTSIZE = 1000;
     HeapData sdata[TESTSIZE];
     HeapData hdata1[TESTSIZE];
@@ -98,5 +96,6 @@ int main() {
             cout << "Heap 2 value at " << i << " = " << hdata2[i].getPriority() << " does not match " << sdata[i].getPriority() << "\n";
         }
     }
+    */ 
     return 0;
 }
