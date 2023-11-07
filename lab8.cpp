@@ -58,20 +58,26 @@ int main() {
     showHeap(myHeap);
     showHeap(myHeap2);
 
-    /*
+    
     const int TESTSIZE = 1000;
     HeapData sdata[TESTSIZE];
     HeapData hdata1[TESTSIZE];
     HeapData hdata2[TESTSIZE];
     // TODO: Create an empty heap named heap1
+    HeapData heap1[TESTSIZE];
 
     for (int i = 0; i < TESTSIZE; i++) {
-        sdata[i].setPriority(RandInRange(0,TESTSIZE * 10));
-        sdata[i].setData(i);
+        sdata[i].priority = (0,TESTSIZE * 10);
+        sdata[i].theData = i;
         // TODO: Insert data item sdata[i] into the heap
-
+        heap1[i] = sdata[i];
+        push_heap(heap1.begin(), heap1.end());
     }
     // TODO: check that heap1 is a heap
+    is_heap(heap1.begin(), heap1.end()) 
+        ? cout << "The container is a heap." 
+        : cout << "The container is not a heap";
+        cout << endl;
 
     // TODO: create a heap named heap2 from the data in
     //   sdata (read into a vector then make that a
@@ -96,6 +102,6 @@ int main() {
             cout << "Heap 2 value at " << i << " = " << hdata2[i].getPriority() << " does not match " << sdata[i].getPriority() << "\n";
         }
     }
-    */ 
+
     return 0;
 }
