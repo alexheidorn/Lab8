@@ -15,6 +15,8 @@ class HeapData {
 public:
     int priority;
     int theData;
+    // overaload equality operator or write a fuxtion that gives 2 heaps that returns
+    int getPriority(){ return priority; }
 };
 
 void showHeap(vector<HeapData> data, int curr = 0, int level = 0) {
@@ -36,7 +38,7 @@ int main() {
     HeapData hpdata[10];
     for (int i = 0; i < 10; i++) {
         hpdata[i].priority = pdata[i];
-        hpdata[i].theData= i;
+        hpdata[i].theData = i;
     }
     // TODO create initial heap named myHeap with data
     // from hpdata, 
@@ -44,6 +46,7 @@ int main() {
     for (int i = 0; i < 10; i++){
         myHeap.push_back(hpdata[i]);
     }
+    // how do i compare based on priority w stl fxn??
     make_heap(myHeap.begin(), myHeap.end());
 
     // and a second heap named myHeap2 with
@@ -64,13 +67,13 @@ int main() {
     HeapData hdata1[TESTSIZE];
     HeapData hdata2[TESTSIZE];
     // TODO: Create an empty heap named heap1
-    HeapData heap1[TESTSIZE];
+    vector<HeapData> heap1;
 
     for (int i = 0; i < TESTSIZE; i++) {
-        sdata[i].priority = (0,TESTSIZE * 10);
+        sdata[i].priority = RandInRange(0,TESTSIZE * 10);
         sdata[i].theData = i;
         // TODO: Insert data item sdata[i] into the heap
-        heap1[i] = sdata[i];
+        heap1.push_back(sdata[i]);
         push_heap(heap1.begin(), heap1.end());
     }
     // TODO: check that heap1 is a heap
@@ -82,15 +85,25 @@ int main() {
     // TODO: create a heap named heap2 from the data in
     //   sdata (read into a vector then make that a
     //   heap)
+    vector<HeapData> heap2;
+    for (int i = 0; i < TESTSIZE; i++){
+        heap2.push_back(sdata[i]);
+    }
+    make_heap(heap2.begin(), heap2.end());
+
 
     for (int i = (TESTSIZE - 1); i >= 0; i--) {
-        hdata1[i] = 
         // TODO:  set hdata1[i] to insert top of heap1,
         //  then pop heap1
+        hdata1[i] = heap1[0];
+        pop_heap(heap1.begin(), heap1.end());
+        heap1.pop_back();
 
-        // TODO: set hdata1[i] to insert top of heap2,
+        // TODO: set hdata2[i] to insert top of heap2,
         // then pop heap2
-
+        hdata2[i] = heap2[0];
+        pop_heap(heap2.begin(), heap2.end());
+        heap2.pop_back();
     }
 
     sort(sdata,sdata + TESTSIZE);
