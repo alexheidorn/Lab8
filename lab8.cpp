@@ -109,8 +109,9 @@ int main() {
 
     //min heap not working
     make_heap(myHeap2.begin(), myHeap2.end(), [](HeapData& a, HeapData& b) {
-            return a.getPriority() < b.getPriority();
-        });
+            return a.getPriority() > b.getPriority();
+        }
+    );
     //make_heap(myHeap2.begin())
 
     // TODO show the heap data in myHeap and myHeap2
