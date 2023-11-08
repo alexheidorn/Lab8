@@ -18,8 +18,24 @@ public:
     int theData;
     // overaload equality operator or write a fuxtion that gives 2 heaps that returns
     //for making max heap
-    bool operator()(const HeapData& a, const HeapData& b) const{
+
+    /*
+    friend bool operator<(const HeapData& a, const HeapData& b){
         return a.priority < b.priority;
+    }
+    //for making min heap
+    friend bool operator>(const HeapData& a, const HeapData& b){
+        return a.priority > b.priority;
+    }
+    */
+
+    //help from Xander
+    bool operator < (const HeapData& a) {
+        return this->priority < a.priority;
+    }
+
+    bool operator > (const HeapData& b){
+        return this->priority > b.priority;
     }
 
     int getPriority(){ return priority; }
@@ -62,8 +78,17 @@ int main() {
 
 
     // how do i compare based on priority w stl fxn??
-    make_heap(myHeap.begin(), myHeap.end(), HeapData());
-    /* Jane solution
+    make_heap(myHeap.begin(), myHeap.end()); 
+    //this fxn is working properly, but it's duplicating the values
+
+
+
+
+
+    // online solution
+    // make_heap(myHeap.begin(), myHeap.end(), HeapData());
+
+    /* classmate's solution
     make_heap(myHeap.begin(), myHeap.end(), 
         [](HeapData& a, HeapData& b) {
             return a.getPriority() < b.getPriority();
@@ -79,24 +104,30 @@ int main() {
     // the same data but where it is a min heap
     vector<HeapData> myHeap2;
     for (int i = 0; i < 10; i++){
-        myHeap.push_back(hpdata[i]);
+        myHeap2.push_back(hpdata[i]);
     }
-    make_heap(myHeap.rbegin(), myHeap.rend());
+
+    //min heap not working
+    make_heap(myHeap2.begin(), myHeap2.end(), [](HeapData& a, HeapData& b) {
+            return a.getPriority() < b.getPriority();
+        });
+    //make_heap(myHeap2.begin())
 
     // TODO show the heap data in myHeap and myHeap2
-    cout << "myHeap (Max Heap):\n";
+    cout << "myHeap (Max Heap):\n\n";
     //showHeap(myHeap);
     for (auto& item : myHeap) {
         cout << item.getPriority() << " ";
     }
     cout << endl;
+    cout << endl;
 
     cout << "myHeap2 (Min Heap):\n";
-    showHeap(myHeap2);
+    //showHeap(myHeap2);
     for (auto& item : myHeap2) {
         cout << item.getPriority() << " ";
     }
-
+    cout << endl;
     
     const int TESTSIZE = 1000;
     HeapData sdata[TESTSIZE];
