@@ -17,7 +17,12 @@ public:
     int priority;
     int theData;
     // overaload equality operator or write a fuxtion that gives 2 heaps that returns
+    //for making max heap
     friend bool operator<(const HeapData& a, const HeapData& b){
+        return a.priority < b.priority;
+    }
+    //for making min heap
+    friend bool operator>(const HeapData& a, const HeapData& b){
         return a.priority > b.priority;
     }
 
@@ -60,7 +65,7 @@ int main() {
     for (int i = 0; i < 10; i++){
         myHeap.push_back(hpdata[i]);
     }
-    make_heap(myHeap.rbegin(), myHeap.rend());
+    make_heap(myHeap.begin(), myHeap.rend(), >);
 
     // TODO show the heap data in myHeap and myHeap2
     cout << "myHeap:\n";
