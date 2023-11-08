@@ -29,7 +29,7 @@ public:
     int getPriority(){ return priority; }
 };
 
-void showHeap(vector<HeapData> data, int curr = 0, int level = 0) {
+void showHeap(vector<HeapData>& data, int curr = 0, int level = 0) {
     if (curr < data.size()) {
         showHeap(data, curr*2+2,level+1);
         cout << setw(level*3) << " ";
@@ -56,8 +56,28 @@ int main() {
     for (int i = 0; i < 10; i++){
         myHeap.push_back(hpdata[i]);
     }
+    cout << "myHeap:\n";
+    for (auto& item : myHeap) {
+        cout << item.getPriority() << " ";
+    }
+    cout << endl;
+
+
+
+
     // how do i compare based on priority w stl fxn??
     make_heap(myHeap.begin(), myHeap.end());
+    /* Jane solution
+    make_heap(myHeap.begin(), myHeap.end(), 
+        [](HeapData& a, HeapData& b) {
+            return a.getPriority() < b.getPriority();
+        }
+    );
+    */
+
+    // Lambda body??
+    //make_heap(myHeap.begin(), myHeap.end(), [])
+
 
     // and a second heap named myHeap2 with
     // the same data but where it is a min heap
@@ -65,14 +85,21 @@ int main() {
     for (int i = 0; i < 10; i++){
         myHeap.push_back(hpdata[i]);
     }
-    make_heap(myHeap.begin(), myHeap.rend(), >);
+    make_heap(myHeap.rbegin(), myHeap.rend());
 
     // TODO show the heap data in myHeap and myHeap2
-    cout << "myHeap:\n";
-    showHeap(myHeap);
+    cout << "myHeap (Max Heap):\n";
+    //showHeap(myHeap);
+    for (auto& item : myHeap) {
+        cout << item.getPriority() << " ";
+    }
+    cout << endl;
 
-    cout << "myHeap2:\n";
+    cout << "myHeap2 (Min Heap):\n";
     showHeap(myHeap2);
+    for (auto& item : myHeap2) {
+        cout << item.getPriority() << " ";
+    }
 
     
     const int TESTSIZE = 1000;
@@ -91,8 +118,8 @@ int main() {
     }
     // TODO: check that heap1 is a heap
     is_heap(heap1.begin(), heap1.end()) 
-        ? cout << "The container is a heap." 
-        : cout << "The container is not a heap";
+        ? cout << "Heap1 is a heap." 
+        : cout << "Heap1 is not a heap";
         cout << endl;
 
     // TODO: create a heap named heap2 from the data in
