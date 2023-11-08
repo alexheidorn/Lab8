@@ -6,6 +6,7 @@
 */
 
 #include <iostream>
+#include <iomanip>
 #include <algorithm>
 #include <stdlib.h>
 #include <vector>
@@ -16,13 +17,17 @@ public:
     int priority;
     int theData;
     // overaload equality operator or write a fuxtion that gives 2 heaps that returns
+    friend bool operator<(const HeapData& a, const HeapData& b){
+        return a.priority > b.priority;
+    }
+
     int getPriority(){ return priority; }
 };
 
 void showHeap(vector<HeapData> data, int curr = 0, int level = 0) {
     if (curr < data.size()) {
         showHeap(data, curr*2+2,level+1);
-        //cout << setw(level*3) << " ";
+        cout << setw(level*3) << " ";
         cout << data[curr].priority << "(" << 
                 data[curr].theData << ")" << "\n";
         showHeap(data, curr*2+1,level+1);
@@ -58,7 +63,10 @@ int main() {
     make_heap(myHeap.rbegin(), myHeap.rend());
 
     // TODO show the heap data in myHeap and myHeap2
+    cout << "myHeap:\n";
     showHeap(myHeap);
+
+    cout << "myHeap2:\n";
     showHeap(myHeap2);
 
     
