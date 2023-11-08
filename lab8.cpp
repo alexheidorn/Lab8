@@ -18,12 +18,8 @@ public:
     int theData;
     // overaload equality operator or write a fuxtion that gives 2 heaps that returns
     //for making max heap
-    friend bool operator<(const HeapData& a, const HeapData& b){
+    bool operator()(const HeapData& a, const HeapData& b) const{
         return a.priority < b.priority;
-    }
-    //for making min heap
-    friend bool operator>(const HeapData& a, const HeapData& b){
-        return a.priority > b.priority;
     }
 
     int getPriority(){ return priority; }
@@ -66,7 +62,7 @@ int main() {
 
 
     // how do i compare based on priority w stl fxn??
-    make_heap(myHeap.begin(), myHeap.end());
+    make_heap(myHeap.begin(), myHeap.end(), HeapData());
     /* Jane solution
     make_heap(myHeap.begin(), myHeap.end(), 
         [](HeapData& a, HeapData& b) {
