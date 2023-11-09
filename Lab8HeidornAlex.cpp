@@ -5,6 +5,33 @@
 *  
 */
 
+/*
+myHeap (Max Heap):
+      70(2)
+   90(5)
+      30(0)
+ 200(6)
+      50(1)
+         30(9)
+   80(4)
+         20(3)
+      25(8)
+         15(7)
+myHeap2 (Min Heap):
+      200(6)
+   70(2)
+      90(5)
+ 15(7)
+      30(9)
+         80(4)
+   20(3)
+         30(0)
+      25(8)
+         50(1)
+Heap1 is a heap.
+PS C:\Users\alexh\CS2>
+*/
+
 #include <iostream>
 #include <algorithm>
 #include <stdlib.h>
@@ -17,6 +44,7 @@ public:
     int priority;
     int theData;
     
+    // overloaded < operator for all heap fxn, except for making min heap
     friend bool operator<(const HeapData& a, const HeapData& b){
         return a.priority < b.priority;
     }
