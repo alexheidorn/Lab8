@@ -16,10 +16,9 @@ class HeapData {
 public:
     int priority;
     int theData;
-
-    // overloaded < operator for all heap fxn, except for making min heap
-    bool operator < (const HeapData& a) {
-        return this->priority < a.priority;
+    
+    friend bool operator<(const HeapData& a, const HeapData& b){
+        return a.priority < b.priority;
     }
 };
 
@@ -59,8 +58,9 @@ int main() {
     for (int i = 0; i < 10; i++){
         myHeap2.push_back(hpdata[i]);
     }
+
     // create min heap
-    make_heap(myHeap.begin(), myHeap.end(), [](HeapData& a, HeapData& b) {
+    make_heap(myHeap2.begin(), myHeap2.end(), [](HeapData& a, HeapData& b) {
             return a.priority > b.priority;
         }
     );
@@ -70,7 +70,7 @@ int main() {
     showHeap(myHeap);
     cout << "myHeap2 (Min Heap):\n";
     showHeap(myHeap2);
-
+   
     const int TESTSIZE = 1000;
     HeapData sdata[TESTSIZE];
     HeapData hdata1[TESTSIZE];
