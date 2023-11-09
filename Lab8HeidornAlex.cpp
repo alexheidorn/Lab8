@@ -88,7 +88,8 @@ int main() {
     }
 
     // create min heap
-    make_heap(myHeap2.begin(), myHeap2.end(), [](HeapData& a, HeapData& b) {
+    make_heap(myHeap2.begin(), myHeap2.end(), 
+        [](HeapData& a, HeapData& b) {
             return a.priority > b.priority;
         }
     );
