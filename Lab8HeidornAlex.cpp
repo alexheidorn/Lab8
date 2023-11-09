@@ -86,27 +86,43 @@ int main() {
         push_heap(heap1.begin(), heap1.end());
     }
     // TODO: check that heap1 is a heap
+    if (is_heap(heap1.begin(), heap1.end())) {
+        cout << "Heap1 is a heap.";
+    }
+    else { cout << "Heap1 is not a heap."; }
 
     // TODO: create a heap named heap2 from the data in
     //   sdata (read into a vector then make that a
     //   heap)
+    vector<HeapData> heap2;
+    for (int i = 0; i < TESTSIZE; i++){
+        heap2.push_back(sdata[i]);
+    }
+    make_heap(heap2.begin(), heap2.end());
 
     for (int i = (TESTSIZE - 1); i >= 0; i--) {
         hdata1[i] = 
         // TODO:  set hdata1[i] to insert top of heap1,
         //  then pop heap1
+        hdata1[i] = heap1[0];
+        pop_heap(heap1.begin(), heap1.end());
+        heap1.pop_back();
 
-        // TODO: set hdata1[i] to insert top of heap2,
+        // TODO: set hdata2[i] to insert top of heap2,
         // then pop heap2
+        hdata2[i] = heap2[0];
+        pop_heap(heap2.begin(), heap2.end());
+        heap2.pop_back();
 
     }
     sort(sdata,sdata + TESTSIZE);
+    //this code should NOT run, if things were done correctly
     for (int i = 0; i < TESTSIZE; i++) {
-        if (sdata[i].getPriority() != hdata1[i].getPriority()) {
-            cout << "Heap 1 value at " << i << " = " << hdata1[i].getPriority() << " does not match " << sdata[i].getPriority() << "\n";
+        if (sdata[i].priority != hdata1[i].priority) {
+            cout << "Heap 1 value at " << i << " = " << hdata1[i].priority << " does not match " << sdata[i].priority << "\n";
         }
-        if (sdata[i].getPriority() != hdata2[i].getPriority()) {
-            cout << "Heap 2 value at " << i << " = " << hdata2[i].getPriority() << " does not match " << sdata[i].getPriority() << "\n";
+        if (sdata[i].priority != hdata2[i].priority) {
+            cout << "Heap 2 value at " << i << " = " << hdata2[i].priority << " does not match " << sdata[i].priority << "\n";
         }
     }
     return 0;
