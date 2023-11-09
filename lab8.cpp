@@ -19,7 +19,7 @@ public:
     // overaload equality operator or write a fuxtion that gives 2 heaps that returns
     //for making max heap
 
-    /*
+    /**/
     friend bool operator<(const HeapData& a, const HeapData& b){
         return a.priority < b.priority;
     }
@@ -27,8 +27,9 @@ public:
     friend bool operator>(const HeapData& a, const HeapData& b){
         return a.priority > b.priority;
     }
-    */
+    
 
+    /*
     //help from Xander
     bool operator < (const HeapData& a) {
         return this->priority < a.priority;
@@ -37,6 +38,7 @@ public:
     bool operator > (const HeapData& b){
         return this->priority > b.priority;
     }
+    */
 
     int getPriority(){ return priority; }
 };
@@ -78,7 +80,7 @@ int main() {
 
 
     // how do i compare based on priority w stl fxn??
-    //make_heap(myHeap.begin(), myHeap.end()); 
+    make_heap(myHeap.begin(), myHeap.end()); 
     //this fxn is working properly, but it's duplicating the values
 
 
@@ -88,13 +90,13 @@ int main() {
     // online solution
     // make_heap(myHeap.begin(), myHeap.end(), HeapData());
 
-    /* classmate's solution */
+    /* classmate's solution 
     make_heap(myHeap.begin(), myHeap.end(), 
         [](HeapData& a, HeapData& b) {
             return a.getPriority() < b.getPriority();
         }
     );
-    
+    */
 
     // Lambda body??
     //make_heap(myHeap.begin(), myHeap.end(), [])
@@ -117,12 +119,12 @@ int main() {
     // TODO show the heap data in myHeap and myHeap2
     cout << "myHeap (Max Heap):\n";
     showHeap(myHeap);
-    /*
+    
     for (auto& item : myHeap) {
         cout << item.getPriority() << " ";
     }
     cout << endl;
-    */
+    
 
     cout << "myHeap2 (Min Heap):\n";
     showHeap(myHeap2);
