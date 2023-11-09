@@ -18,8 +18,8 @@ public:
     int theData;
 
     // overloaded < operator for all heap fxn, except for making min heap
-    friend bool operator<(const HeapData& a, const HeapData& b){
-        return a.priority < b.priority;
+    bool operator < (const HeapData& a) {
+        return this->priority < a.priority;
     }
 };
 
