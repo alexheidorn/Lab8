@@ -78,7 +78,7 @@ int main() {
 
 
     // how do i compare based on priority w stl fxn??
-    make_heap(myHeap.begin(), myHeap.end()); 
+    //make_heap(myHeap.begin(), myHeap.end()); 
     //this fxn is working properly, but it's duplicating the values
 
 
@@ -88,13 +88,13 @@ int main() {
     // online solution
     // make_heap(myHeap.begin(), myHeap.end(), HeapData());
 
-    /* classmate's solution
+    /* classmate's solution */
     make_heap(myHeap.begin(), myHeap.end(), 
         [](HeapData& a, HeapData& b) {
             return a.getPriority() < b.getPriority();
         }
     );
-    */
+    
 
     // Lambda body??
     //make_heap(myHeap.begin(), myHeap.end(), [])
@@ -115,21 +115,23 @@ int main() {
     //make_heap(myHeap2.begin())
 
     // TODO show the heap data in myHeap and myHeap2
-    cout << "myHeap (Max Heap):\n\n";
-    //showHeap(myHeap);
+    cout << "myHeap (Max Heap):\n";
+    showHeap(myHeap);
+    /*
     for (auto& item : myHeap) {
         cout << item.getPriority() << " ";
     }
     cout << endl;
-    cout << endl;
+    */
 
     cout << "myHeap2 (Min Heap):\n";
-    //showHeap(myHeap2);
-    for (auto& item : myHeap2) {
+    showHeap(myHeap2);
+    /*for (auto& item : myHeap2) {
         cout << item.getPriority() << " ";
     }
     cout << endl;
-    
+    */
+   
     const int TESTSIZE = 1000;
     HeapData sdata[TESTSIZE];
     HeapData hdata1[TESTSIZE];
@@ -175,6 +177,8 @@ int main() {
     }
 
     sort(sdata,sdata + TESTSIZE);
+
+    //this code should NOT run, if things were done correctly
     for (int i = 0; i < TESTSIZE; i++) {
         if (sdata[i].getPriority() != hdata1[i].getPriority()) {
             cout << "Heap 1 value at " << i << " = " << hdata1[i].getPriority() << " does not match " << sdata[i].getPriority() << "\n";
